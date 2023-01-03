@@ -1,19 +1,23 @@
+<mat-form-field class="search-form">
+  <span matPrefix> </span>
+  <input ngModel #search type="tel" (ngModelChange)="searchTask(search.value)"  matInput placeholder="Search" name= "search" >
+  <mat-icon matSuffix class="search-icon" >search</mat-icon>
+  </mat-form-field>
 <div cdkDropListGroup>
   <div class="container">
     <h2>Todo List</h2>
     <div
       cdkDropList
       #todoList="cdkDropList"
-      *ngIf="allTasks?.length != 0"
       [cdkDropListData]="allTasks"
-      class="task-list"
+      class="todo-list"
       (cdkDropListDropped)="drop($event)"
     >
       <ng-container *ngFor="let task of allTasks">
         <div
           *ngIf="!task.status"
           [cdkDragData]="task"
-          class="task task"
+          class="task"
           cdkDrag
         >
           <mat-checkbox
@@ -21,6 +25,7 @@
             onclick="return false;"
             checked="false"
           ></mat-checkbox>
+          
           <div class="task-name">{{ task.name }}</div>
           <button
             (click)="openModal(task); formTypeAction = 'edit'"
@@ -49,7 +54,7 @@
     <div
       cdkDropList
       #doneList="cdkDropList"
-      *ngIf="allTasks?.length != 0"
+     
       [cdkDropListData]="allTasks"
       id="done-list"
       class="done-list"

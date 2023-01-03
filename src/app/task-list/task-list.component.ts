@@ -52,6 +52,7 @@ export class TaskListComponent implements OnInit {
   editTask: Task | undefined;
   public allTasks!: Task[];
   $event2!: CdkDragDrop<Task[]>;
+  taskNotFound: boolean = false;
 
   show: boolean = false;
 
@@ -95,6 +96,24 @@ export class TaskListComponent implements OnInit {
         alert(e.message);
       },
     });
+  }
+
+  searchTask(value: string){
+    
+    let results: Task[] = [];
+    for(let task of this.allTasks) {
+      if (task.name.toLowerCase().indexOf(value.toLowerCase()) !== -1){
+        results.push(task);
+      }
+    }
+
+    this.allTasks = results;
+    
+
+    if(!value){
+      this.getAllTasks();
+    }
+
   }
 
   deleteTask(id: number) {
