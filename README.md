@@ -46,18 +46,6 @@ Aplicação desenvolvida para gerenciar tarefas.
 | `id`      | `long` | **Required**. Task ID |
 
 
-# Sistema gerenciador de tarefas
-
-Aplicação desenvolvida para gerenciar tarefas.
-
-
-
-# Sistema gerenciador de tarefas
-
-Aplicação desenvolvida para gerenciar tarefas.
-
-
-
 ## Deployment with docker
 
 If you downloaded the whole project, just make sure your docker is running and your TCP:3306 port isn't being used.
