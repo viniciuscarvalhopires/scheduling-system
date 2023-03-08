@@ -71,6 +71,19 @@ Create a docker-compose.yaml file and paste the following script:
 ```yaml
 version: '3'
 services:
+  db:
+    image: vinicpires/todo_database:1.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=todo_database
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_ROOT_PASSWORD=admin
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - server
   task-management-server:
     image: vinicpires/task-management-backend:2.0
     ports:
@@ -85,19 +98,6 @@ services:
       - task-management-frontend
     depends_on:
       - db
-    networks:
-      - server
-  db:
-    image: vinicpires/todo_database:1.0
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_HOST=%
-      - MYSQL_DATABASE=todo_database
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_ROOT_PASSWORD=admin
-    volumes:
-      - ./docker/volume-mysql:/var/lib/mysql
     networks:
       - server
   task-management-frontend:
